@@ -1,37 +1,30 @@
 import React from 'react'
 import { Chart } from 'react-charts'
 
-export default function LineChart() {
-    const data = React.useMemo(
-        () => [
+const LineChart = ({data}) => {
+    const dataToRender =
+        [
             {
-                label: 'Series 1',
-                data: [[0, 1], [1, 2], [2, 4], [3, 2], [4, 7]]
+                label: 'Yarra Municipality Traffic Count',
+                data: data
             },
-            {
-                label: 'Series 2',
-                data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
-            }
-        ],
-        []
-    )
+        ]
 
-    const axes = React.useMemo(
-        () => [
-            { primary: true, type: 'linear', position: 'bottom' },
+    const axes = [
+            { primary: true, type: 'utc', position: 'bottom', showTicks: true, showGrid: true},
             { type: 'linear', position: 'left' }
-        ],
-        []
-    )
+        ]
 
     return(
         <div
             style={{
-                width: '400px',
-                height: '300px'
+                width: '100%',
+                height: '50vh'
             }}
         >
-            <Chart data={data} axes={axes} />
+            <Chart data={dataToRender} axes={axes} />
         </div>
     );
 }
+
+export default LineChart;
